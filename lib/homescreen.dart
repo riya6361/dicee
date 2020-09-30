@@ -7,57 +7,55 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int leftDiceNumber = 1;
-  int rightDiceNumber = 2;
-  void roll() {
-    setState(() {
-      leftDiceNumber = Random().nextInt(6) + 1;
-      rightDiceNumber = Random().nextInt(6) + 1;
-    });
-  }
+
+int left=1;
+int right=1;
+void roll(){
+  setState(() {
+    left=Random().nextInt(6)+1;
+    right=Random().nextInt(6)+1;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dicee'),
+        title: Center(child: Text("Dicee")),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Center(
-        child: Column(
+        child: Column
+        (
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Image(
-                      image: AssetImage(
-                          'assets/images/dice-png-$leftDiceNumber.png'),
-                    ),
+          children: [
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Image(
+                    image: AssetImage('images/dice-png-$left.png'),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Image(
-                      image: AssetImage(
-                          'assets/images/dice-png-$rightDiceNumber.png'),
-                    ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Image(
+                    image: AssetImage('images/dice-png-$right.png'),
                   ),
                 ),
-              ],
-            ),
-            RaisedButton(
-              onPressed: () {
-                roll();
-              },
-              child: Text('Roll'),
-              disabledColor: Colors.green,
-              hoverElevation: 5.0,
-            )
-          ],
-        ),
+              )
+            ],
+          ),
+          RaisedButton(onPressed: roll,
+          child: Text("Roll",
+          style: TextStyle(fontWeight: FontWeight.bold),
+          )
+        ,
+          )
+        ]),
       ),
     );
   }
